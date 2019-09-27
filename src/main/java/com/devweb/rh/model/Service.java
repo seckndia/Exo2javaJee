@@ -1,11 +1,17 @@
 package com.devweb.rh.model;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 import javax.persistence.*;
 import java.util.List;
 
 @Entity
+@Data
+@EqualsAndHashCode(exclude = "employes")
 public class Service {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -14,6 +20,7 @@ public class Service {
     private String libelle;
     @OneToMany(mappedBy ="service")
     //@JsonBackReference
+    @JsonIgnoreProperties("service")
     private List <Employe> employes;
 
     public List<Employe> getEmployes() {

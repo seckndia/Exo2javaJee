@@ -17,11 +17,12 @@ public class ServiceController {
 private ServiceRepository serviceRepository;
 @GetMapping(value = "/liste")
 @PreAuthorize("hasAuthority('ROLE_ADMIN')")
+//permet de lister les services
     public List<Service> liste(){
         return  serviceRepository.findAll();
 
     }
-
+    //permet de ajouter des services
     @PostMapping (value = "/add",consumes = {MediaType.APPLICATION_JSON_VALUE})
     @PreAuthorize("hasAuthority('ROLE_ADMIN')")
     public Service add(@RequestBody(required = false) Service s){
